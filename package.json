@@ -26,11 +26,17 @@
     "eventsource-polyfill": "0.9.6"
   },
   "dependencies": {
+    "autoprefixer-loader": "^3.1.0",
     "babel-polyfill": "6.3.14",
+    "bootstrap": "^3.3.6",
     "co": "^4.6.0",
+    "css-loader": "^0.23.1",
     "history": "1.17.0",
     "immutable": "3.7.6",
+    "node-sass": "^3.4.2",
+    "null-loader": "^0.1.1",
     "react": "0.14.3",
+    "react-bootstrap": "^0.28.1",
     "react-dom": "0.14.3",
     "react-redux": "4.0.5",
     "react-router": "1.0.3",
@@ -40,6 +46,8 @@
     "redux-devtools-log-monitor": "1.0.1",
     "redux-simple-router": "1.0.2",
     "redux-thunk": "1.0.2",
-    "rest": "^1.3.1"
+    "rest": "^1.3.1",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0"
   }
 }
