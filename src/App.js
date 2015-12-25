@@ -1,4 +1,13 @@
 import React from 'react';
+import {
+          Navbar,
+          Nav,
+          NavItem,
+          MenuItem,
+          NavDropdown
+       }            from 'react-bootstrap';
+import {Link} from 'react-router';
+import './sass/app-root.scss';
 
 
 
@@ -6,8 +15,24 @@ export default React.createClass({
   render () {
     return (
       <div>
-        <div>Root</div>
-        {this.props.children}
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="#">App Name</a>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <NavItem eventKey={1} href="#/">
+              Dashboard
+            </NavItem>
+            <NavItem eventKey={2} href="#/form">
+              Submit Form
+            </NavItem>
+          </Nav>
+        </Navbar>
+        <section className="child-route">
+          {this.props.children}
+        </section>
       </div>
     )
   }
