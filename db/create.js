@@ -12,14 +12,20 @@ co(function *() {
         return r.branch(databaseExists, r.dbDrop(db), { created: 1 });
       });
 
-    yield r.dbCreate(db);
+    yield r.dbCreate(db).run();
 
-    console.log(`Database '${db}' created`);
+    console.log(`Database '${db}' created.`);
 
-    yield r.db(db
+    yield r.db(db)
       .tableCreate(table);
 
-    console.log(`Table '${table}' created`);
+    console.log(`Table '${table}' created.`);
+
+    yield r.db(db)
+      .table(table)
+      .indexCreate('createdAt');
+
+    console.log(`Table '${table}' index 'createdAt' created.`);
 
   } catch (e) {
     console.log(e.message);
