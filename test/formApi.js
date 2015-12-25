@@ -42,4 +42,35 @@ describe('forms', function() {
           });
       });
   });
+
+  it('should return an error when trying to add a SINGLE form on /forms POST', function(done) {
+    chai.request(server)
+      .post('/forms')
+      .send({})
+      .end(function(err, res) {
+        res.should.have.status(406);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.should.have.property('error');
+        res.body.error.should.have.equal('request contained bad json or empty body.');
+
+        done();
+      });
+  });
+
+  it('should return an error when trying to get a SINGLE form on /form/:id GET', function(done) {
+    var id = 'bad_id';
+
+    chai.request(server)
+      .get(`/form/${id}`)
+      .end(function(err, res) {
+        res.should.have.status(404);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.should.have.property('error');
+        res.body.error.should.equal(`form ${id} not found.`);
+
+        done();
+      });
+  });
 });
