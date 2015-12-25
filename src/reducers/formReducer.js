@@ -24,6 +24,9 @@ let ragas = {
 let initialState = {
   isInitializing: false,
   initializeError: false,
+  isSaving : false,
+  hasSaveError : false,
+  errorMessage : '',
   form : {
     raga : '',
     medicalCondition : '',
@@ -32,19 +35,46 @@ let initialState = {
   ragas : ragas
 }
 
-//use clone deep for now, if have time use immutable.js
+
 module.exports  = function(state = initialState, action) {
   switch (action.type) {
     case Constants.SELECT_RAGA:
       return selectRaga(state,action);
+    case Constants.SELECT_CONDITION:
+      return selectCondition(state,action);
+    case Constants.SAVE_ERROR:
+      return saveError(state,action);
     default:
       return state
   }
 }
 
+
+
+
+//use clone deep for now, if have time use immutable.js
 const selectRaga = (state,action)=>{
   let newState = _.cloneDeep(state);
   newState.form.raga = action.raga;
   newState.form.condition = '';
+  return newState;
+}
+
+const selectCondition = (state,action)=>{
+  let newState = _.cloneDeep(state);
+  newState.form.medicalCondition = action.medicalCondition;
+  return newState;
+}
+
+const startSave = (state,action)=>{
+  let newState = _.cloneDeep(state);
+  newState.isSaving = true;
+  return newState;
+}
+
+const saveError = (state,action)=>{
+  let newState = _.cloneDeep(state);
+  newState.hasSaveError = true;
+  newState.errorMessage = action.error.entity;
   return newState;
 }

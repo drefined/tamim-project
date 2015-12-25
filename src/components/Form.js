@@ -9,16 +9,19 @@ import 'react-select/dist/react-select.min.css';
 const Form = React.createClass({
   componentWillMount: function(){
     this.actions = bindActionCreators(Actions,this.props.dispatch);
+
   },
   onSelectRaga(raga){
     this.actions.selectRaga(raga);
   },
   onSelectMedicalCondition(condition){
-    console.log(condition);
+    this.actions.selectCondition(condition);
+  },
+  onSaveForm(){
+    this.actions.saveForm();
   },
   render() {
     let {formStore} = this.props;
-    console.log(formStore);
 
     let ragas = Object.keys(formStore.ragas).map(raga=>{
       return {
@@ -63,6 +66,11 @@ const Form = React.createClass({
 
 
             />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12 buttons-container">
+            <button className="btn btn-primary" onClick={this.onSaveForm}>Save Form</button>
           </div>
         </div>
       </div>
