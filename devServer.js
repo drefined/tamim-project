@@ -52,7 +52,7 @@ app.get('/forms', function(req, res) {
     yield r.db(db)
       .table(table)
       .orderBy({ index: r.desc('createdAt') })
-      .pluck('id','user')
+      .pluck('id','user','createdAt')
       .run()
       .then(function(result) {
         res.json(result);
