@@ -18,7 +18,7 @@ export default React.createClass({
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">App Name</a>
+              <a href="#">Music Therapy</a>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>

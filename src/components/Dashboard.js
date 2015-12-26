@@ -38,7 +38,7 @@ export default React.createClass({
             {
               forms.map(form=>{
                 return (
-                  <tr key={form.id}>
+                  <tr key={form.id} onClick={this.onEditForm}>
                     <td>{form.id}</td>
                     <td>{form.user}</td>
                     <td>{moment(form.createdAt).format('MM/DD/YY HH:mm')}</td>

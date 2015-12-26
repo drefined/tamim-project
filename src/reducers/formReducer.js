@@ -28,6 +28,7 @@ let initialState = {
   hasSaveError : false,
   errorMessage : '',
   form : {
+    user : '',
     raga : '',
     medicalCondition : '',
     song : ''
@@ -42,6 +43,8 @@ module.exports  = function(state = initialState, action) {
       return selectRaga(state,action);
     case Constants.SELECT_CONDITION:
       return selectCondition(state,action);
+    case Constants.UPDATE_USER:
+      return updateUser(state,action);
     case Constants.SAVE_ERROR:
       return saveError(state,action);
     default:
@@ -63,6 +66,12 @@ const selectRaga = (state,action)=>{
 const selectCondition = (state,action)=>{
   let newState = _.cloneDeep(state);
   newState.form.medicalCondition = action.medicalCondition;
+  return newState;
+}
+
+const updateUser = (state,action)=>{
+  let newState = _.cloneDeep(state);
+  newState.form.user = action.user;
   return newState;
 }
 

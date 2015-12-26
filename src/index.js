@@ -53,6 +53,7 @@ render(
           <Route path='/' component={App}>
             <IndexRoute component={Dashboard}/>
             <Route path='form' component={Form}/>
+            <Route path='form/:id' component={Form}/>
           </Route>
         </Router>
         <DevTools/>

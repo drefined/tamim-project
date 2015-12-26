@@ -20,6 +20,9 @@ const Form = React.createClass({
   onSaveForm(){
     this.actions.saveForm();
   },
+  onUpdateUser(e){
+    this.actions.updateUser(e.target.value);
+  },
   render() {
     let {formStore} = this.props;
 
@@ -70,7 +73,22 @@ const Form = React.createClass({
         </div>
         <div className="row">
           <div className="col-xs-12 buttons-container">
-            <button className="btn btn-primary" onClick={this.onSaveForm}>Save Form</button>
+            <div className="input-group">
+              <input
+                value={formStore.form.user}
+                placeholder="Name"
+                type="text"
+                className="form-control"
+                onChange={this.onUpdateUser}
+              />
+              <div className="input-group-btn">
+                <button
+                   onClick={this.onSaveForm}
+                   className="btn btn-primary">
+                    Save Form
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

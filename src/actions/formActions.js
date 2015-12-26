@@ -15,6 +15,13 @@ export const selectCondition = (medicalCondition)=>{
   }
 }
 
+export const updateUser = (user)=>{
+  return {
+    type : Constants.UPDATE_USER,
+    user : user
+  }
+}
+
 
 export const saveForm = ()=>{
   return (dispatch,getState)=>{
