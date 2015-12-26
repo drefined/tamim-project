@@ -18,15 +18,15 @@ export default React.createClass({
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">App Name</a>
+              <a href="#">Music Therapy</a>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
             <NavItem eventKey={1} href="#/">
-              Dashboard
+              Home
             </NavItem>
-            <NavItem eventKey={2} href="#/form">
-              Submit Form
+            <NavItem eventKey={2} href="#/admin">
+              Admin
             </NavItem>
           </Nav>
         </Navbar>

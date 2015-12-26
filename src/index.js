@@ -15,16 +15,17 @@ import {syncReduxAndRouter,
         routeReducer}           from 'redux-simple-router';
 import DevTools                 from './components/DevTools';
 import co                       from 'co';
+import data                     from '../db/data';
 
 
 
 
-import formReducer from './reducers/formReducer';
+import therapyReducer from './reducers/therapyReducer';
 
 
 const reducers = combineReducers({
   routing: routeReducer,
-  formStore : formReducer
+  therapyStore : therapyReducer
 });
 
 
@@ -42,8 +43,9 @@ syncReduxAndRouter(history, store);
 
 
 import App       from './App';
-import Dashboard from './components/Dashboard';
-import Form      from './components/Form';
+import Therapy   from './components/Therapy';
+//import Dashboard from './components/Dashboard';
+// import Form      from './components/Form';
 
 render(
   <div>
@@ -51,8 +53,8 @@ render(
       <div>
         <Router history={history}>
           <Route path='/' component={App}>
-            <IndexRoute component={Dashboard}/>
-            <Route path='form' component={Form}/>
+            <IndexRoute component={Therapy}/>
+            <Route path='/admin' component={null}/>
           </Route>
         </Router>
         <DevTools/>
