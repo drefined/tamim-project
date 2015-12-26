@@ -1,8 +1,10 @@
 var co = require('co');
 var r = require('rethinkdbdash')();
+var data = require('./data');
 
 const db = 'tamim';
-const table = 'music_therapy';
+const table = 'ragas';
+
 
 co(function *() {
   try {
@@ -27,11 +29,20 @@ co(function *() {
 
     yield r.db(db)
       .table(table)
-      .indexCreate('createdAt')
+      .indexCreate('raga')
       .run()
       .then(function() {
-        console.log(`Table '${table}' index 'createdAt' created.`);
+        console.log(`Table '${table}' index 'raga' created.`);
       });
+
+    yield r.db(db)
+      .table(table)
+      .insert(data)
+      .run()
+      .then(function() {
+        console.log(`Inserted data into '${table}'`);
+      });
+
   } catch (e) {
     console.log(e.message);
   }

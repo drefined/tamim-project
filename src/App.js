@@ -23,10 +23,10 @@ export default React.createClass({
           </Navbar.Header>
           <Nav>
             <NavItem eventKey={1} href="#/">
-              Dashboard
+              Home
             </NavItem>
-            <NavItem eventKey={2} href="#/form">
-              Submit Form
+            <NavItem eventKey={2} href="#/admin">
+              Admin
             </NavItem>
           </Nav>
         </Navbar>
