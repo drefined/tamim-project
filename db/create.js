@@ -10,36 +10,36 @@ co(function *() {
   try {
     yield r.dbList()
       .contains(db)
-      .do(function(databaseExists) {
+      .do(function (databaseExists) {
         return r.branch(databaseExists, r.dbDrop(db), { created: 1 });
       });
 
     yield r.dbCreate(db)
       .run()
-      .then(function() {
+      .then(function () {
         console.log(`Database '${db}' created.`);
       });
 
     yield r.db(db)
       .tableCreate(table)
       .run()
-      .then(function() {
+      .then(function () {
         console.log(`Table '${table}' created.`);
       });
 
     yield r.db(db)
       .table(table)
-      .indexCreate('raga')
+      .indexCreate('name')
       .run()
-      .then(function() {
-        console.log(`Table '${table}' index 'raga' created.`);
+      .then(function () {
+        console.log(`Table '${table}' index 'name' created.`);
       });
 
     yield r.db(db)
       .table(table)
       .insert(data)
       .run()
-      .then(function() {
+      .then(function () {
         console.log(`Inserted data into '${table}'`);
       });
 
