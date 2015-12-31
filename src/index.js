@@ -1,64 +1,54 @@
 require('babel-polyfill');
+
 import React from 'react';
 import { render } from 'react-dom';
-import {createStore,
-        combineReducers,
-        applyMiddleware,
-        compose}                from 'redux';
-import {Provider}               from 'react-redux';
-import thunk                    from 'redux-thunk';
-import {Router,
-        Route,
-        IndexRoute}             from 'react-router';
-import createHistory            from 'history/lib/createHashHistory';
-import {syncReduxAndRouter,
-        routeReducer}           from 'redux-simple-router';
-import DevTools                 from './components/DevTools';
-import co                       from 'co';
-import data                     from '../db/data';
-
-
-
-
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { Router, Route, IndexRoute } from 'react-router';
+import createHistory  from 'history/lib/createHashHistory';
+import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
+import DevTools from './components/DevTools';
+import adminReducer from './reducers/adminReducer';
 import therapyReducer from './reducers/therapyReducer';
 
-
-const reducers = combineReducers({
+const reducers = {
   routing: routeReducer,
-  therapyStore : therapyReducer
-});
+  adminStore: adminReducer,
+  therapyStore: therapyReducer,
+  form: formReducer,
+};
 
+const reducer = combineReducers(reducers);
+const middleWare = [thunk];
+const createStoreWithMiddleware = compose(
+  applyMiddleware(...middleWare),
+  DevTools.instrument()
+)(createStore);
 
-let middleWare = [thunk];
-let createStoreWithMiddleware = compose(
-            applyMiddleware(...middleWare),
-            DevTools.instrument()
-          )(createStore);
-
-let store = createStoreWithMiddleware(reducers);
-
+const store = createStoreWithMiddleware(reducer);
 
 const history = createHistory();
 syncReduxAndRouter(history, store);
 
-
-import App       from './App';
-import Therapy   from './components/Therapy';
-//import Dashboard from './components/Dashboard';
-// import Form      from './components/Form';
+import App from './App';
+import Admin from './components/Admin';
+import Therapy from './components/Therapy';
 
 render(
   <div>
     <Provider store={store}>
       <div>
         <Router history={history}>
-          <Route path='/' component={App}>
+          <Route path="/" component={App}>
             <IndexRoute component={Therapy}/>
-            <Route path='/admin' component={null}/>
+            <Route path="/admin" component={Admin}/>
           </Route>
         </Router>
         <DevTools/>
       </div>
     </Provider>
   </div>
-, document.getElementById('app'));
+  , document.getElementById('app')
+);

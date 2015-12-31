@@ -1,18 +1,9 @@
 import React from 'react';
-import {
-          Navbar,
-          Nav,
-          NavItem,
-          MenuItem,
-          NavDropdown
-       }            from 'react-bootstrap';
-import {Link} from 'react-router';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import './sass/app-root.scss';
 
-
-
-export default React.createClass({
-  render () {
+class App extends React.Component {
+  render() {
     return (
       <div>
         <Navbar>
@@ -34,6 +25,8 @@ export default React.createClass({
           {this.props.children}
         </section>
       </div>
-    )
+    );
   }
-})
+}
+
+export default App;

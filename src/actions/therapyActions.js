@@ -9,7 +9,7 @@ export const fetchRagas = ()=>{
       type : Constants.FETCHING_RAGAS
     });
 
-    API.getAllRagas().then(res=>{
+    API.getRagas().then(res=>{
       dispatch({
         type : Constants.RECEIVED_RAGAS,
         ragas : _.sortBy(res.entity, 'name')
